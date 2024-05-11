@@ -84,18 +84,148 @@
 
 + P 统计量小数点前没有零（因为它被限制在 0 和 1 之间）
 
-For completeness, let’s study the second example, the simulation in Figure 6.2b. The data and corresponding bar chart embellished with error bars are shown in Figure 6.6.
+为完整起见，让我们来研究第二个例子，即图 6.2b 中的模拟。图 6.6 显示了数据和相应的带有误差条的柱形图。
 
 ![ ](./img/29.png)
 
-As noted earlier, the results for the second simulation are not statistically significant. A hint of this is the large error bars in Figure 6.6b. The ANOVA reveals and confirms the lack of significance with a high value in the p statistic. As evident by the P-value in Figure 6.7, there is about a 45 percent chance the difference in the  means is simply a chance outcome. Even though the means are the same as in the first simulation, there was such a large variation in the performance of participants that the difference in the means between the test conditions may simply be due to chance. Observe in Figure 6.6a, for example, that participant #8 completed the task in 1.2 seconds using Method A while participant #10 took 6.6 seconds. Evidently, there is something going on that falls outside the explanatory power of the two interaction methods under test.
+如前所述，第二次模拟的结果在统计意义上并不显著。图 6.6b 中的大误差条就说明了这一点。方差分析以较高的 P 统计量值显示并证实了结果的不显著性。从图 6.7 中的 P 值可以看出，均值差异有 45% 的可能只是偶然结果。尽管平均值与第一次模拟相同，但参与者的表现差异很大，因此测试条件之间的平均值差异可能只是偶然造成的。例如，观察图 6.6a，8 号学员使用方法 A 在 1.2 秒内完成了任务，而 10 号学员则用了 6.6 秒。很明显，有一些情况超出了两种交互方法的解释能力。
 
 ![ ](./img/30.png)
 
-In a research paper, non-significant results are also important to report. Figure 6.8 is an example for the second simulation. Bear in mind that a non-significant ANOVA does not imply that the null hypothesis is true (i.e., no difference in the means). A non-significant ANOVA simply indicates that the evidence is insuff icient to reject the null hypothesis: The null hypothesis remains tenable.
+在研究论文中，不显著的结果也需要报告。图 6.8 是第二个模拟的示例。请记住，非显著方差分析并不意味着零假设成立（即均值无差异）。不显著的方差分析只是表明证据不足以拒绝零假设： 零假设仍然成立。
 
 ![ ](./img/31.png)
 
-For non-significant results, the ANOVA result is reported in one of two ways. If F is less than 1, it is impossible for the effect to be significant, and in this case “ns,” for “not significant,” is substituted for p. If the F statistic is greater than 1 and p is greater than .05, the result does not meet the acceptable threshold for significance and p is reported as p > .05
+对于不显著的结果，方差分析结果有两种报告方式。如果 F 小于 1，则效应不可能显著，此时用 "ns "代替 p，表示 "不显著"。
 
 ### 6.1.2 More than two test conditions
+
+The example above involves one factor with two levels (test conditions). In practice, a factor often has more than two levels. Although the idea is similar, an example is worthwhile. Figure 6.9 gives the data and bar chart for a hypothetical experiment where four user interfaces or interaction methods are compared. The data are the observed, measured responses on a dependent variable.
+
+![ ](./img/32.png)
+
+An ANOVA on the data produces the table in Figure 6.10. Right off, we see that p is less than .05, the accepted threshold for significance. Plainly put, there was a significant effect of Test Condition on the dependent variable (F3,45 = 4.95,  p < .005). In the parentheses, the relevant statistics are pulled from the table, as before. The degrees of freedom are different in this example. If n is the number of test conditions and m is the number of participants, then the degrees of freedom are (n − 1) for the variance due to Test Condition and (n − 1)(m − 1) for the variance due to Test Condition × Subject.
+
+![ ](./img/33.png)
+
+Since the P-value in the ANOVA table is .0047, there is less than a 0.5 percent chance the difference in the means is a chance outcome. In all likelihood, the difference was caused by inherent properties of one or more of the test conditions. In other words, the effect of the test conditions on the dependent variable was  statistically significant.
+
+###  6.1.3 Post hoc comparisons
+
+The ANOVA in Figure 6.10 reveals only that at least one of the means is significantly different from at least one other mean. A quick glance at the bar chart in Figure 6.9b leaves us wondering which test conditions differ from which other test conditions. To determine this, a post hoc comparisons test is used. An example is the Scheffé test shown in Figure 6.11. Among the four test conditions, six comparisons are possible. Of these, only the A-C and B-C comparisons are significant. In others words, the means are significantly different between test conditions A and C and between test conditions B and C. The other four comparisons did not meet the 5 percent threshold for significance.
+
+![ ](./img/34.png)
+
+Several HCI research papers using a Scheffé post hoc analysis include the following: Chen and Chien, 2005; Czerwinski et al., 1999; Fang, Chai, and Ferreira, 2009; Freeman, Norris, and Hyland, 2006; Kurihara, Vronay, and Igarashi, 2005; Kuzuoka, Kosaka, et al., 2004.
+
+### 6.1.4 Between-subjects designs
+
+The examples above assume a within-subjects design: each participant was tested on all test conditions (levels of the factor). While within-subjects designs are the most common in HCI, between-subjects designs are also used. When performing an ANOVA on the data for either design, it is important to set up the analysis properly, as the variances are partitioned differently for within-subjects data versus between-subjects data.
+
+Let’s consider an example experiment on the differences between left-handed and right-handed users in using a stylus to add calendar entries on a PDA. Depending on the screen layout, occlusion may occur when, for example, a lefthanded user interacts with widgets on the right side of the display. Does the occlusion affect performance? Maybe. Maybe not. For the experiment, 16 participants were recruited. Handedness was a between-subjects factor with two levels: left handers, with 8 participants, and right handers, with 8 different participants. Each participant performed a few iterations of an “add calendar entry” task. The mean times to complete the task for each participant are tabulated in Figure 6.12a. While such tables are generally not provided in research papers, the data are given here to illustrate the organization for between-subjects ANOVAs. Most ANOVA applications operate on a matrix of data where the number of rows equals the number of participants, so the data in Figure 6.12a are organized in sixteen rows.  The between-subjects factor is identified as an added column of nominal data. encoding the levels of the factor. “L” and “R” identify the participants who wereleft handers versus right handers.
+
+![ ](./img/35.png)
+
+Figure 6.12b summarizes the results by handedness, while Figure 6.12c presents the same information in a bar chart, as might appear in a research paper.  The ANOVA is performed on the 16 × 2 matrix in the right two columns in Figure 6.12a. The result is shown in Figure 6.13. The degrees of freedom are (n − 1) for the variance due to Handedness and (m − n) for the variance due to the Residual.
+
+![ ](./img/36.png)
+
+Since the P-value in Figure 6.13 is greater than .05, the difference between left handers and right handers was not statistically significant. Even though there was about a 10 percent difference between the groups—22.0 s for left handers, 19.9 s for right handers—there was considerable variability in the observations. Based on the results of this experiment, we consider the null hypothesis tenable and conclude that there is no performance difference between left and right handed users in performing the add calendar entry task on the system under test
+
+### 6.1.5 Two-way analysis of variance
+
+An experiment with two independent variables, or two factors, is called a “two-way design.” For such experiments, the analysis of variance tests for the main effects of each factor on the dependent variable, as well as an interaction effect. A significant interaction effect means that the factors in combination influence, or have an effect on, the dependent variable. Let’s see how these effects are revealed in a two-way analysis of variance.
+
+If an experiment has two factors, there are three possibilities for assigning conditions to participants. The assignments may be within-subjects for both factors, between-subjects for both factors, or within-subjects for one factor and betweensubjects for the other. Figure 6.14 gives the results for a hypothetical experiment with both factors assigned within-subjects. The factors are device, with three levels, and task, with two levels. The devices could be, for example, a mouse, a trackball, and a stylus, while the tasks could be, for example, point-select and dragselect.13 But this isn’t important here. For the example, each participant was tested on all three devices and with both tasks in a simple target acquisition task. In this case, the experiment is referred to as a “3 × 2 within-subjects design.” We assume as well that the order of administering conditions was counterbalanced in some manner (see Chapter 5, section 5.11). The data show the measured responses on the dependent variable, task completion time, in seconds.
+
+![ ](./img/37.png)
+
+In Figure 6.14a, the data are given by participant, device, and task. Evidently, participant #12 performed task 2 with device 3 in nine seconds. The means and standard deviations are shown in the bottom rows, calculated across the 12 participants for each device-task condition. Figure 6.14b reorganizes the data to more clearly demonstrate the device and task effects. As seen, device 3 was the fastest, device 1 the slowest. Task 2 was performed slightly faster than task 1. Figure 6.14c shows the mean scores for each device and task in a bar chart, as might appear in a research paper. The error bars show ±1 standard deviation about the means.
+
+ While there were differences between the three devices and two tasks, there were also variations in the responses, as evident along the bottom row in Figure 6.14a. So the question remains: were the observed differences significant and attributable to inherent properties of the devices or tasks, or were the differences simply a chance outcome? This question is answered by an analysis of variance. The ANOVA is performed on the core 12 × 6 matrix in Figure 6.14a. In preparing the data for analysis, it is important to properly assign the factors and levels. As organized in Figure 6.14a, the columns are ordered by device, with task nested within device. The results are shown in Figure 6.15.
+
+ There are three results in Figure 6.15: the device main effect, the task main effect, and the device by task interaction effect. Let’s see how these results are pulled from the analysis of variance table and presented in a research paper. An example is given in Figure 6.16.
+
+![ ](./img/38.png)
+
+ It is a challenge to create interest in presenting statistical results. A reader who confronts a tedious, sterile recitation of statistic after statistic will quickly lose interest. The goal in reporting results is to selectively pull interesting and revealing measures and statistics from the large array of data that emerges in experimental research. Note in Figure 6.16 expressions like “difference was modest,” “slightly faster,” and “due solely to.” These are minor embellishments intended to improve the readability of the results. Further discussion is needed to explain the results (e.g., “The improved performance with device 3 with task 2 is attributed to….”).
+
+ It is, of course, the data that are important, not the statistics. Statistical tests help assess hypotheses, but they are not the results per se. Day and Gastel (2006, 63) further emphasize this point: “Generally, a lengthy description of statistical methods indicates that the writer has recently acquired this information and believes that the readers need similar enlightenment.” Don’t feel compelled to explain the analysis of variance, or any other statistical method. Give the results in terms of the data, with supporting statistical tests conveyed plainly and without elaboration
+
+### 6.1.6 ANOVA tool
+
+A resource available on this book’s website is a Java utility called Anova2. Anova2 is a command-line application that processes data in a text file and produces an ANOVA table on the console. The utility supports five designs:
+
++ One-way with one within-subjects factor
+
++ One-way with one between-subjects factor
+
++ Two-way with two within-subjects factors
+
++ Two-way with one within-subjects factor and one between-subjects factor
+
++ Three-way with two within-subjects factors and one between-subjects factor
+
+To illustrate the general operation of Anova2, Figure 6.17 shows the usage message if the program is run without arguments.
+
+![ ](./img/39.png)
+
+Although the API gives extensive instructions and examples, one example is included here. The file dix-example-10×2.txt contains the data shown in Figure 6.18. The data are from a hypothetical experiment on icon recognition, as described by Dix et al. (2004, 337). The single factor (F1) is icon design with two levels: natural and abstract. The data are the measurements for task completion time, the dependent variable. The first column contains the task completion times for the natural icons, the second column for the abstract icons. Each row contains the measurements for one participant. The hypothetical experiment used 10 participants
+
+![ ](./img/40.png)
+
+The mean task completion times (not shown) are 697.7 s for the natural icons and 750.3 s for the abstract icons. Evidently the recognition time for the natural icons was 7.0 percent less than for the abstract icons. An analysis of variance determines if the difference was statistically significant or if it was likely due to chance. The analysis is initiated from the command-line and outputs an ANOVA table to the console. (See Figure 6.19.) 
+
+As seen in the table, and as might appear in a research paper, “The experiment revealed a significant effect of icon type on task completion time (F1,9 = 33.36, p < .0005).
+
+### 6.1.7 Counterbalancing and testing for a group effect
+
+As noted in the previous chapter, if a factor is assigned within-subjects, learning effects must be offset between conditions. The most common way to do this is counterbalancing. For a single factor with two levels (A and B), this requires dividing the participants into two equal groups. One group (G1) is tested on A followed by B, while the other (G2) is tested on B followed by A. The goal is to balance out, or cancel, any learning effect that takes place. If counterbalancing worked, there should be no group effect—no significant difference between G1 and G2. Simple enough, but how does one know counterbalancing worked? A group effect  is investigated by treating group as a between-subjects factor. Of course, group is not a factor in the sense of a research topic. Nevertheless, the data can be organized with group as a between-subjects factor and the ANOVA can test for a group effect—a main effect of group on a dependent variable.
+
+I’ll illustrate this by modifying the icon design example in the previous section. Since the design was within-subjects, we’ll assume counterbalancing was used to offset learning effects. With 10 participants, there are two groups with 5 participants per group. One group was tested with the natural icons followed by the abstract icons (NA). The other group had the conditions in the reverse order (AN). The modified data are shown in Figure 6.20. The between-subjects group identifier appears as a separate column of nominal data. Headers lines are also added. This is an optional feature of Anova2 to improve the readability of the ANOVA table.
+
+![ ](./img/41.png)
+
+For the purpose of the ANOVA, the experiment is now a 2 × 2 design with one within-subjects factor (icon type with levels natural and abstract) and one between-subjects factor (group with levels NA and AN). Using Anova2, the ANOVA is performed on the data in Figure 6.20 using the same command, except specifying the new file, noting the presence of a between-subjects factor with two levels, and including the −h option indicating the presence of header lines. (See Figure 6.21.) The group effect, seen along the top row, is not significant (F1,8 = 0.466, ns). This is good news. A non-significant group effect means counterbalancing worked. Any learning that may have taken place was balanced out. The primary result of the experiment remains the same, although the F and p values are slightly different because of the new partitioning of data in computing the variances. The result is still a significant effect of icon type on task completion time (F1,8 = 30.68, p < .0005).
+
+![ ](./img/42.png)
+
+There is a third effect in Figure 6.21. This is the two-way interaction effect between icon type and group. As seen in the ANOVA table, the effect was not significant  (F1,8 = 0.277, ns). If this effect is significant, it represents a phenomenon known as asymmetric skill transfer (Poulton, 1974), meaning there was a learning effect and that it was different transitioning from A to N than from N to A (see Chapter 5, section 5.12).
+
+In many research experiments, counterbalancing is used for within-subjects factors without actually testing for a group effect. This is largely a matter of choice. Consult the student exercises at the end of this chapter for some practice examples on the analysis of variance.
+
+##  6.2 Chi-square test
+
+A common statistical procedure for investigating relationships is the chi-square test, also known as the Pearson chi-square test, and sometimes using “squared” instead of “square.” The pronunciation is kī (to rhyme with sky). The relationships are between categorical, or nominal-scale, variables representing attributes of people, interaction methods, systems, and so on. The data are commonly summarized in a contingency table—a cross tabulation organizing data in rows and columns with each cell containing counts or frequency data for the number of observations in the category. A chisquare test compares the observed values—the counts in the table—against expected values. The expected values are developed under the assumption that there is no difference among the categories in the table. The chi-square test is a non-parametric test since the categories are nominal-scale attributes and do not have a probability distribution associated with them. A hypothetical example will illustrate.
+
+Consider a research project investigating whether males or females differ in their methods of scrolling when using a desktop computer system. To study this, a large number of users are observed. For each user it is noted whether they are male or female and whether they scroll using the mouse wheel (MW), the scrollbar by clicking and dragging (CD), or the keyboard (KB). The categories are Gender (male, female) and Scrolling Method (MW, CD, KB). Figure 6.22a provides the data in a 2 × 3 contingency table. One hundred and one users were observed, including 56 males and  45 females. Counts for usage of the scrolling methods were 49 (MW), 24 (CD), and  28 (KB). Figure 6.22b shows the data in a bar chart, as might appear in a research paper.
+
+![ ](./img/43.png)
+
+A quick glance at the data and chart suggests that there may indeed be a difference between males and females in their methods of scrolling on desktop computer systems. Only 9 females used clicking and dragging, compared to 15 males. However, more males were observed overall, so the difference is not as dramatic as it seems. The issue, then, is whether the differences observed are real or simply due to random effects. To determine this, the chi-square test is used. The test statistic is written χ2, using the lowercase Greek letter chi. As with the analysis of variance, the underlying assumption is “no difference” with the test, seeking to reject the assumption. Unlike the analysis of variance, however, a chi-square test is simple. The calculations are easily done using a spreadsheet application. Let’s work through the details for this example.
+
+The chi-square test is a comparison between the observed values and the expected values, with the expected values accounting for the different row and column totals. Figure 6.23a shows the expected values for the data in Figure 6.22a, under the no-difference assumption. Each expected value is the row total multiplied by the column total, divided by the grand total. For example, the Male-MW expected value is (56 × 49) / 101 = 27.2. From the observed and expected values, a table of chi-squares is created, as shown in Figure 6.23b. Each chi-square is the square of (the observed value minus the expected value), divided by the expected value. For example, the Male-MW chi-square is (28.0 − 27.2)2 / 27.2 = 0.025.
+
+The final chi-square value is the sum of the individual chi-squares in the table. For the example data, the result is χ2 = 1.462, shown in the bottom-right cell in Figure 6.23b. Determining if there is a statistically significant difference among the cell entries involves comparing the final chi-square with values in a table of critical values. If the chi-square exceeds the critical value, the differences in the contingency table are statistically significant, implying there is a significant difference in the nominal-scale variables in the table. Two additional details are required:  (a) the degrees of freedom, and (b) the required alpha level, or p-value, for significance. The degrees of freedom for the chi-square statistic is (r − 1)(c − 1), where r is the number of rows and c is the number of columns. For the example, df = (2 − 1) (3 − 1) = 2. The alpha level is chosen prior to testing. I’ll use α = .05 for the example. The critical value for significance is looked up in a table. Figure 6.24 gives the chi-square critical values for df = 1 to df = 8 using four common alpha levels.At α = .05 and df = 2, the critical value is χ2 = 5.99. Since the computed value of χ2 = 1.462 is less than the critical value, the differences in the observed values (see Figure 6.22) are not statistically significant. Therefore, we conclude that there is no difference in the way males and females scroll using desktop computer systems.
+
+![ ](./img/44.png)
+
+As a convenience, this book’s website includes a ChiSquare Java utility. It processes a text file containing a table of data, with the rows and columns containing the counts in the contingency table. Besides automating the calculation of the chisquare statistic, χ2, the utility calculates and outputs the probability p, thus negating the need to use a look-up table. Figure 6.25 shows the utility processing a text file containing the data in Figure 6.22a.
+
+Let’s work through another example, where the outcome is statistically significant and where a post hoc comparisons test is used to determine which conditions are significantly different from one another.
+
+A researcher wishes to investigate whether students, professors, and parents agree in their responses to a question about mobile phone usage during classroom lectures. To study this, a large number of students, professors, and parents are randomly sampled and asked if they agree that students should be allowed to use mobile phones during classroom lectures. The categories are Opinion (agree, disagree) and Person (student, professor, parent). In all, 300 people were sampled, including 40 students, 60 professors, and 200 parents. The responses were: 120 agree and 180 disagree. The contingency table in Figure 6.26 shows the data organized by Opinion and Person. Evidently, respondents overall feel that the use of mobile phones during classroom lectures should not be allowed. Furthermore, the responses are in the same direction for all three categories of people. However, a closer look at the table reveals some variation among the categories. Although three times more students disagreed than agreed, only a few more parents disagreed than agreed. To determine if the differences in response are statistically significant, a chi-square test is used.
+
+![ ](./img/45.png)
+
+The calculations leading to the chi-square statistic are identical to those demonstrated for the last example. The result in this case is χ2 = 20.5 with df = 2. With reference to Figure 6.24, the chi-square statistic exceeds the critical value both for α = .05 (5.99) and for α = .001 (13.82). Clearly, there is a difference in opinions among students, professors, and parents on the question of interest. However, since there were three categories of people, a post hoc pairwise comparisons test is required to determine which categories differ from one another. The ChiSquare utility on this book’s website includes a −ph option to perform the post hoc comparisons. (See Figure 6.27.) The comparisons indicate statistical significance (p < .05) for the 1:3 and 2:3 comparisons. Thus, on the question at issue there is a differ
+ence in opinion between students and parents and between professors and parents. However, there is no difference in opinion between students and professors.
+
+Finally, let’s consider an example using data from a paper published in the ACM SIGCHI conference proceedings. Ayyavu and Jensen researched tools to assist users in determining if websites are considered trustworthy (free of spam, predators, etc.) (Ayyavu and Jensen, 2011). In particular, they were interested in differences in the ratings provided by community-based tools versus heuristics-based tools. They examined Web Of Trust (WOT) as a community-based tool and McAfee’s Site Advisor (MSA) as a heuristics-based tool. The tools were presented with 20,000 websites and for each site the tools provided an assessment of good (safe), bad (not safe), or unsure. After removing sites for which WOT or MSA gave an unsure rating, 18,650 remained. Ayyavu and Jensen presented the results for these sites in a contingency table, formatted as shown in Figure 6.28. Thankfully, most of the sites were deemed good, or safe. WOT rated 9.21 percent of the sites bad, or not safe. The figure was 3.36 percent for MSA. That seems like a substantial difference. To determine if the difference was statistically significant, a chi-square test was used. The result was χ2 = 543.5 with df = 1. That’s well above the critical value of χ2 = 3.84 for p < .05 (see Figure 6.24). Ayyavu and Jensen concluded that there was a statistically significant difference between the assessments provided by the tools. In fact, they reported that the difference was “highly significant,” noting that the chi-square statistic exceeded the p < .0001 critical value (Ayyavu and Jensen, 2011, p. 2309).
+
+![ ](./img/46.png)
+
+A contingency table combined with a chi-square test is a simple and effective way to study relationships in HCI research. The relationships are frequently between attributes of people (males versus females, Mac users versus PC users, etc.) and their behaviors (e.g., preferred scrolling method, texting habits, etc.). But as the last example illustrates, the attributes may also involve systems and the behaviors of systems. A few additional examples of chi-square tests in the HCI literature are as follows: Bartneck, Verbunt, Mubin, and Mahmud, 2007; Kane, Wobbrock, and Ladner, 2011; Kindberg et al., 2008; Qvarfordt, Jönsson, and Dahlbäck, 2003). See also student exercises 6-6 to 6-8 at the end of this chapter.
+
+## 6.3 Non-parametric tests for ordinal data
+
